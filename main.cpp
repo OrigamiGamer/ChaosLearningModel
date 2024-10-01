@@ -1,12 +1,15 @@
 #include "NeuralNetwork.h"
 
+#include <iostream>
+#include <chrono>
+
 using namespace std;
 
 int main(int, char**) {
 	using namespace ChaosLearningModel;
 	debug();
 
-
+	// cout << string("./") << endl;
 
 	//// TEST
 	// VV_A a = { {2,2},{2,2},{2,2} };

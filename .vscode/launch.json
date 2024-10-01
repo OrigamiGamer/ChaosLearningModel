@@ -8,7 +8,7 @@
         "type": "cppvsdbg",
         "request": "launch",
         "preLaunchTask": "CMake: 生成",
-        "program": "${workspaceFolder}/build/Debug/main.exe",
+        "program": "${workspaceFolder}/out/build/Debug/main.exe",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",
