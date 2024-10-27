@@ -57,8 +57,8 @@ int main(int, char**) {
 		}
 	}
 	v_matrix_W.resize(2);
-	resize_vector(v_matrix_W[0],{5,5});// layer 1 with 2 neurons of 5 connections
-	resize_vector(v_matrix_W[1],{1,1,1,1,1});//	layer 2 with 5 neurons of 1 connection
+	resize_vector(v_matrix_W[0], { 5,5 });// layer 1 with 2 neurons of 5 connections
+	resize_vector(v_matrix_W[1], { 1,1,1,1,1 });//	layer 2 with 5 neurons of 1 connection
 	for (auto& matrix_W : v_matrix_W) {
 		for (auto& v_w : matrix_W) {
 			for (auto& w : v_w) {
