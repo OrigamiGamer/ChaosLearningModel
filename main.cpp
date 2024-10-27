@@ -26,9 +26,19 @@ void operator+=(std::vector<T>& v1, T const& a) {
 };
 
 template <typename T>
-std::vector<T> operator*(VVV_NODE const& matrix_W, V_NODE const& v_a) {
-	V_NODE v_result;
+std::vector<T> operator*(std::vector<T> const& v_a, T const& b) {
+	std::vector<T> v_result;
+	for (size_t i = 0;i < v_a.size();i++) {
+		v_result.push_back(v_a.at(i) * b);
+	}
+	return v_result;
+};
+
+template <typename T>
+std::vector<T> operator*(std::vector<std::vector<T>> const& matrix_W, std::vector<T> const& v_a) {
+	std::vector<T> v_result;
 	for (size_t m = 0;m < matrix_W.size();m++) {
+		if(m<v_a.size())
 		v_result += matrix_W.at(m) * v_a.at(m);
 	}
 	return v_result;
@@ -66,6 +76,16 @@ int main(int, char**) {
 			}
 		}
 	}
+
+	// forward
+	v_v_a[0] = { 1,1 };
+	v_v_a[1] = v_matrix_W[0] * v_v_a[0];
+	v_v_a[2] = v_matrix_W[1] * v_v_a[1];
+	std::cout << "final signals: " << std::endl;
+	for (auto& a : v_v_a[2]) {
+		std::cout << std::to_string(a) << " ";
+	}
+	std::cout << std::endl;
 
 	// print weights
 	for (auto& matrix_W : v_matrix_W) {
