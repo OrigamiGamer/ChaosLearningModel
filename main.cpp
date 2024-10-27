@@ -36,9 +36,9 @@ std::vector<T> operator*(VVV_NODE const& matrix_W, V_NODE const& v_a) {
 
 template <typename T>
 void resize_vector(std::vector<std::vector<T>>& vv_a, std::vector<size_t> assign_map) {
-	vec.resize(assign_map.size());
+	vv_a.resize(assign_map.size());
 	for (size_t i = 0;i < assign_map.size();i++) {
-		vv_a.at(i).resize(assgin_map.at(i));
+		vv_a.at(i).resize(assign_map.at(i));
 	}
 };
 
@@ -67,7 +67,7 @@ int main(int, char**) {
 		}
 	}
 
-	// print
+	// print weights
 	for (auto& matrix_W : v_matrix_W) {
 		for (auto& v_w : matrix_W) {
 			for (auto& w : v_w) {
