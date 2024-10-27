@@ -5,7 +5,6 @@
 namespace ChaosLearningModel {
 
 	// Computation
-
 	template <typename T>
 	std::vector<T> operator*(std::vector<T>& v_a, std::vector<T>& v_b) {
 		std::vector<T> v_c(v_a.size());
@@ -32,6 +31,8 @@ namespace ChaosLearningModel {
 		// [layer][node][connection]
 		VV_A vv_a;
 		VVV_A vvv_w;
+		// w[m][n]: the node[n] connected to the last layer[m]
+		// w[m][n][q]: weight of the connection[q] from the node[n] to the last layer[m]
 
 		void Initialize(VV_A initial_vv_a, VVV_A initial_vvv_w) {
 			vv_a = initial_vv_a;
@@ -40,11 +41,15 @@ namespace ChaosLearningModel {
 		void Initialize(size_t layer_count, std::vector<size_t> v_node_count_of_each_layer) {
 			vv_a.resize(layer_count);
 			vvv_w.resize(layer_count);
-			for (size_t layer = 0; layer < layer_count; layer++) {
-				vv_a[layer].resize(v_node_count_of_each_layer[layer]);
-				vvv_w[layer].resize(v_node_count_of_each_layer[layer]);
-				for (size_t node = 0; node < v_node_count_of_each_layer[layer]; node++) {
+			for (size_t m = 0; m < layer_count; m++) {
+				vv_a[m].resize(v_node_count_of_each_layer[m]);
 
+				// the final layer doesn't have connections to next layer
+				if (m < layer_count - 1) {
+					vvv_w[m].resize(v_node_count_of_each_layer[m]);
+					for (size_t n = 0; n < v_node_count_of_each_layer[m + 1]; n++) {
+						vvv_w[m][n].resize(v_node_count_of_each_layer[m]);
+					}
 				}
 			}
 		}
@@ -64,8 +69,6 @@ namespace ChaosLearningModel {
 	void debug() {
 		NeuralNetwork NN;
 		NN.Initialize(3, { 2,10,4 });
-
-
 
 	}
 
