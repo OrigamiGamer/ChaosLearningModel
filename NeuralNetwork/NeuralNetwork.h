@@ -6,7 +6,8 @@ namespace ChaosLearningModel {
 
 	// Computation
 	template <typename T>
-	std::vector<T> operator*(std::vector<T>& v_a, std::vector<T>& v_b) {
+	std::vector<T> operator*(std::vector<T>& v_a, std::vector<T>& v_b)
+	{
 		std::vector<T> v_c(v_a.size());
 		for (size_t i = 0;i < v_a.size();i++)
 			v_c.at(i) = v_a[i] * v_b.at(i);
@@ -14,7 +15,8 @@ namespace ChaosLearningModel {
 	};
 
 	template <typename T>
-	T Summa(std::vector<T>& vec) {
+	T Summa(std::vector<T>& vec)
+	{
 		T sum = 0;
 		for (auto a : vec)
 			sum += a;
@@ -34,11 +36,13 @@ namespace ChaosLearningModel {
 		// w[m][n]: the node[n] connected to the last layer[m]
 		// w[m][n][q]: weight of the connection[q] from the node[n] to the last layer[m]
 
-		void Initialize(VV_A initial_vv_a, VVV_A initial_vvv_w) {
+		void Initialize(VV_A initial_vv_a, VVV_A initial_vvv_w)
+		{
 			vv_a = initial_vv_a;
 			vvv_w = initial_vvv_w;
 		}
-		void Initialize(size_t layer_count, std::vector<size_t> v_node_count_of_each_layer) {
+		void Initialize(size_t layer_count, std::vector<size_t> v_node_count_of_each_layer)
+		{
 			vv_a.resize(layer_count);
 			vvv_w.resize(layer_count);
 			for (size_t m = 0; m < layer_count; m++) {
@@ -54,7 +58,8 @@ namespace ChaosLearningModel {
 			}
 		}
 
-		V_A Query() {
+		V_A Query()
+		{
 			for (size_t layer = 0; layer < vv_a.size();layer++) {
 				for (size_t node = 0; node < vvv_w[layer].size(); node++) {
 					V_A v_a = vv_a[layer] * vvv_w[layer][node];
@@ -66,7 +71,8 @@ namespace ChaosLearningModel {
 		}
 	};
 
-	void debug() {
+	void debug()
+	{
 		NeuralNetwork NN;
 		NN.Initialize(3, { 2,10,4 });
 
